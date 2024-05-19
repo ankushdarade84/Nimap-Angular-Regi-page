@@ -1,27 +1,40 @@
 # AngularRegipage
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
+# Ankush Darade
+Check my website for more details - https://ankush-darade.netlify.app/
+<br>
+
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
 
-## Code scaffolding
+# steps for Run the Project 
+1. Install AngularCLI - `npm install -g @angular/cli`
+3. Install node Module - `npm install`
+4. Run the JSON Server - `json-server --watch db.json`
+5. Run the Angular Project `ng serve`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<br>
+The Task details are Present in `AngularTask.pdf`
 
-## Build
+<br>
+# output
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/9241ec75-53df-4e37-adba-121893debe85)
 
-## Running unit tests
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/47e8a804-3477-441e-bae8-9ba417579522)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/3763398b-5fe2-45f3-acd3-8dd0e7921ded)
 
-## Running end-to-end tests
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/be845ebe-8c34-42b5-935d-da72665fbd98)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/b1a0ffa5-5267-43de-9a61-6760c054652e)
 
-## Further help
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/b2dd5daf-8ff1-4dfa-9eca-6436551dd527)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/ac510a8f-f500-4138-b8a8-a9c190e3b3d4)
+
+
+
