@@ -1,0 +1,95 @@
+<div class="header">
+  <li><h2 style="color: blue;">User List</h2></li>
+ <li><input class="button btn-info" value="Show Users List" (click)="show()" style="text-align: center" /></li>
+ 
+ </div>
+
+
+
+ <ul *ngFor='let user of contactlist '>
+  <li>
+    <div>
+      <div class="row">
+        <div class="column">
+          <div class="profilepic">
+            <img [src]="user.profilePhoto" alt="Profile Photo" style="max-width: 250px; max-height: 300px;">
+          </div>
+
+         
+
+        </div>
+        <div class="column">
+          <div class="usersdata">
+            I'm <b>{{user.firstname}}&nbsp;{{user.lastname}}</b> and I'm above {{user.age}} years and you can send 
+            your emails to <b style="color: rgb(12, 102, 135);">{{user.email}}</b>. I live in the state of 
+            <b>{{ user.homeaddress2 }}</b><b>{{ user.companyaddress2 }}</b>. I like to 
+            <i *ngFor="let interest of user.interests; let last = last">{{ interest.value }}<span *ngIf="!last">, </span></i>. 
+            Please send me newsletters. Please reach out to me on my phone number.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="tabledata">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>First Name:</td>
+          <td>{{ user.firstname }}</td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>{{ user.lastname }}</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr *ngIf="user.addresstype === 'home'">
+          <td>Home Address:</td>
+          <td>
+            {{ user.homeaddress1 }}<br>
+            {{ user.homeaddress2 }}
+          </td>
+        </tr>
+        <tr *ngIf="user.addresstype === 'company'">
+          <td>Company Address:</td>
+          <td>
+            {{ user.companyaddress1 }}<br>
+            {{ user.companyaddress2 }}
+          </td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td>{{ user.gender }}</td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td>{{ user.age }}</td>
+        </tr>
+        <tr>
+          <td>Interest:</td>
+          <td>
+            
+              <li *ngFor="let interest of user.interests">
+                {{ interest.value }}
+              </li>
+           
+          </td>
+        </tr>
+        <!-- <tr>
+          <td>Profile Photo:</td>
+          <td>
+            <img [src]="user.profilePhoto" alt="Profile Photo" style="max-width: 200px; max-height: 200px;">
+            
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+</li>
+<hr>
+<hr>
+  <br>
+</ul>

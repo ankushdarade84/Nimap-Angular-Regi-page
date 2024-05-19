@@ -1,0 +1,22 @@
+{
+  "users": [
+
+    {
+      "firstName":"sads",
+      "lastName":"zsdc0",
+      "email": "s@gmail.com",
+      "addressType":"home",
+      "homeAddress1": "nsks",
+      "homeAddress2":"ss",
+      "companyAddress1": "",
+      "companyAddress2": "",
+      "gender": "male",
+      "age": "15",
+      "interests": "adsxad",
+      "file":""
+      }
+  ],
+    "images": []
+  
+  
+}

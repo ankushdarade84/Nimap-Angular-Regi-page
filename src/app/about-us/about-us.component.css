@@ -1,0 +1,33 @@
+li{
+    display: inline;
+    padding-right: 10px;
+  }
+
+  .header{
+    text-align: center;
+    padding-top: 10px;
+    
+
+  }
+
+
+  .profilepic{
+    text-align: center;
+    padding: 30px;
+  }
+
+  .usersdata{
+    text-align: center;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+.tabledata{
+  padding-top: 0px;
+  padding-bottom: 20px;
+  padding-left: 150px;
+  padding-right: 150px;
+
+}

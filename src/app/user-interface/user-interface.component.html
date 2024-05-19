@@ -1,0 +1,239 @@
+<div class="container mt-5">
+  <h2>User Profile</h2>
+  <li><button class="btn btn-primary" (click)="editProfile()">Edit Profile</button></li>
+  <li><button class="btn btn-danger" (click)="logout()">Logout</button></li>
+  <!-- <li><button class="btn btn-info" (click)="openEditPhotoModal()">Edit Photo</button></li> -->
+
+  <div *ngIf="user">
+    <div>
+      <div class="row">
+        <div class="column">
+          <div class="profilepic">
+            <img [src]="user.profilePhoto" alt="Profile Photo" style="max-width: 250px; max-height: 300px;">
+          </div>
+
+         
+
+        </div>
+        <div class="column">
+          <div class="usersdata">
+            I'm <b>{{user.firstname}}&nbsp;{{user.lastname}}</b> and I'm above {{user.age}} years and you can send 
+            your emails to <b style="color: rgb(12, 102, 135);">{{user.email}}</b>. I live in the state of 
+            <b>{{ user.homeaddress2 }}</b><b>{{ user.companyaddress2 }}</b>. I like to 
+            <i *ngFor="let interest of user.interests; let last = last">{{ interest.value }}<span *ngIf="!last">, </span></i>. 
+            Please send me newsletters. Please reach out to me on my phone number.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="tabledata">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>First Name:</td>
+          <td>{{ user.firstname }}</td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>{{ user.lastname }}</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr *ngIf="user.addresstype === 'home'">
+          <td>Home Address:</td>
+          <td>
+            {{ user.homeaddress1 }}<br>
+            {{ user.homeaddress2 }}
+          </td>
+        </tr>
+        <tr *ngIf="user.addresstype === 'company'">
+          <td>Company Address:</td>
+          <td>
+            {{ user.companyaddress1 }}<br>
+            {{ user.companyaddress2 }}
+          </td>
+        </tr>
+        <tr>
+          <td>Gender:</td>
+          <td>{{ user.gender }}</td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td>{{ user.age }}</td>
+        </tr>
+        <tr>
+          <td>Interest:</td>
+          <td>
+            
+              <li *ngFor="let interest of user.interests">
+                {{ interest.value }}
+              </li>
+           
+          </td>
+        </tr>
+        <!-- <tr>
+          <td>Profile Photo:</td>
+          <td>
+            <img [src]="user.profilePhoto" alt="Profile Photo" style="max-width: 200px; max-height: 200px;">
+            
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="modal"  id="registrationModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Profile</h5>
+          <button type="button" class="btn-close" (click)="closePopup()"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td>
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" formControlName="firstname" class="form-control" requird>
+                    <div *ngIf="registrationForm.get('firstname')?.invalid && registrationForm.get('firstname')?.touched">
+                      <span *ngIf="registrationForm.get('firstname')?.hasError('required')" style="color: red;">
+                        Name is required
+                      </span>
+                      <span *ngIf="registrationForm.get('firstname')?.hasError('pattern')" style="color: red;">
+                        Invalid format (only alphabets allowed & length less than 20)
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" formControlName="lastname" class="form-control">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" formControlName="email" class="form-control">
+                    <span *ngIf="registrationForm.get('email')?.hasError('required') && registrationForm.get('email')?.touched" style="color: red;">
+                      Email is required
+                    </span>
+                    <span *ngIf="registrationForm.get('email')?.hasError('email') && registrationForm.get('email')?.touched" style="color: red;">
+                      Invalid email format should be abc&#64;abc.abc
+                    </span>
+                  </td>
+                  <td>
+                    <label for="addresstype">Address:</label>
+                    <select id="addresstype" formControlName="addresstype" class="form-control">
+                      <option value="home">Home</option>
+                      <option value="company">Company</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr *ngIf="registrationForm.get('addresstype')?.value === 'home'">
+                  <td colspan="2">
+                    <label for="homeaddress1">Home Address Line 1:</label>
+                    <input type="text" id="homeaddress1" formControlName="homeaddress1" class="form-control">
+                  </td>
+                </tr>
+                <tr *ngIf="registrationForm.get('addresstype')?.value === 'home'">
+                  <td colspan="2">
+                    <label for="homeaddress2">Home Address Line 2:</label>
+                    <input type="text" id="homeaddress2" formControlName="homeaddress2" class="form-control">
+                  </td>
+                </tr>
+                <tr *ngIf="registrationForm.get('addresstype')?.value === 'company'">
+                  <td colspan="2">
+                    <label for="companyaddress1">Company Address Line 1:</label>
+                    <input type="text" id="companyaddress1" formControlName="companyaddress1" class="form-control">
+                  </td>
+                </tr>
+                <tr *ngIf="registrationForm.get('addresstype')?.value === 'company'">
+                  <td colspan="2">
+                    <label for="companyaddress2">Company Address Line 2:</label>
+                    <input type="text" id="companyaddress2" formControlName="companyaddress2" class="form-control">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Gender:</label>
+                    <div>
+                      <input type="radio" id="male" value="Male" formControlName="gender"> Male
+                      <input type="radio" id="female" value="Female" formControlName="gender"> Female
+                    </div>
+                  </td>
+                  <td>
+                    <label for="age">Age: {{ registrationForm.get('age')?.value }}</label>
+                    <input type="range" id="age" min="0" max="100" formControlName="age" class="form-control">
+                  </td>
+                </tr>
+                <tr>
+
+                  <td>
+                    <label for="interests">Interests:</label>
+                    <tag-input formControlName="interests" class="form-control"></tag-input>
+                    <!-- <input type="text" id="interests" formControlName="interests" class="form-control"> -->
+
+
+                  </td>
+
+                  <!-- <td>
+                    <label for="interests">Interests:</label>
+                    <tag-input formControlName="interests" (ngModelChange)="updateInterests($event)" [modelAsStrings]="true" [separatorKeyCodes]="[13, 188]" class="formControl"></tag-input>
+                  </td> -->
+                  
+                  <!-- [(ngModel)]="interests" -->
+                  <td>
+                    <label for="profilePhoto">Profile Photo:</label>
+                    <input type="file" (change)="onFileChange($event)" class="form-control">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <label>Photo:</label>
+                    <img [src]="registrationForm.get('profilePhoto')?.value" alt="Profile Photo"
+                      style="max-width: 200px; max-height: 200px;">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-center">
+                    <button class="btn btn-success" type="submit" [disabled]="!registrationForm.valid">Update</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<div class="modal" id="editPhotoModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Profile Photo</h5>
+        <button type="button" class="close" (click)="closeEditPhotoModal()">&times;</button>
+      </div>
+      <div>
+        
+        <div colspan="2" class="text-center">
+          <label>Photo:</label>
+          <img [src]="user.profilePhoto" alt="Profile Photo"
+            style="max-width: 200px; max-height: 200px;">
+        </div>
+      </div>
+      <div class="modal-body">
+        <input type="file" (change)="onFileChange($event)" class="form-control">
+        <button class="btn btn-primary" (click)="editPhoto()">Update Photo</button>
+      </div>
+    </div>
+  </div>
+</div>

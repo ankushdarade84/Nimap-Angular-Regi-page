@@ -1,0 +1,61 @@
+ /* Add this to your global styles or component styles
+ .registration-form {
+    text-align: center;
+ 
+  } 
+  
+  table {
+    width: 100%;
+
+
+  }
+
+  
+
+
+  .h2
+  {
+    text-align: center;
+    color: blue;
+    font-size: bold;
+  } 
+
+div{
+  text-align: center;  
+} */
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+button {
+  align-self: flex-center;
+  background-color: rgb(24, 174, 47);
+}
+
+/* registration-form.component.css */
+table {
+  width: 100%;
+}
+
+td {
+  padding: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="file"] {
+  padding: 3px;
+}
+
+button {
+  margin-top: 10px;
+}

@@ -1,0 +1,110 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+.homepage{
+    background-image:url(../../assets/graphics.jpg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  
+
+}
+
+.home2{
+    background-image:url(../../assets/22.png);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  
+}
+
+/* Other CSS rules go here */
+
+
+       body{
+        
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+       }
+
+       .height{
+        height: 100vh;
+       }
+       
+
+       .search{
+       position: relative;
+       box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+         
+       }
+
+       .search input{
+
+        height: 60px;
+        text-indent: 25px;
+        border: 2px solid #d6d4d4;
+
+
+       }
+
+
+       .search input:focus{
+
+        box-shadow: none;
+        border: 2px solid blue;
+
+
+       }
+
+       .search .fa-search{
+
+        position: absolute;
+        top: 20px;
+        left: 16px;
+
+       }
+
+       .search button{
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 50px;
+        width: 110px;
+        background: rgb(14, 168, 55);
+
+       }
+
+/* homepage.component.css */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-dialog {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  max-width: 1200px;
+  width: 90%;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Could be more or less, depending on screen size */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}

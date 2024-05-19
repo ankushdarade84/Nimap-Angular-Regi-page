@@ -1,0 +1,144 @@
+<!-- homepage.component.html -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+  integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+<section>
+  <div class="homepage" style="text-align: center;">
+
+    <div class="container">
+      <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-8">
+          <div class="search">
+            <i class="fa fa-search"></i>
+            <input type="text" class="form-control" placeholder="Search Here">
+            <button class="btn btn-success">Search</button>
+          </div>
+          <br>
+          <br>
+
+          <button type="button" class="btn btn-info btn-lg" (click)="openPopup()">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" id="registrationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registration Form</h5>
+        <button type="button" class="btn-close" (click)="closePopup()"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td>
+                  <label for="firstname">First Name:</label>
+                  <input type="text" id="firstname" formControlName="firstname" class="form-control" placeholder="First Name" required="">
+                  <div *ngIf="registrationForm.get('firstname').invalid && registrationForm.get('firstname').touched">
+                    <span *ngIf="registrationForm.get('firstname').hasError('required')" style="color: red;">
+                      name is required
+                    </span>  
+                    <span *ngIf="registrationForm.get('firstname').hasError('pattern')" style="color: red;">
+                      Invalid Format () only alphabets allowed & length less than 20
+                    </span>
+                  </div>
+        
+                </td>
+                <td>
+                  <label for="lastname">Last Name:</label>
+                  <input type="text" id="lastname" formControlName="lastname" class="form-control" placeholder="Last Name">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="email">Email: </label>
+                  <input type="email" id="email" formControlName="email" class="form-control" placeholder="Mail Id - abc&#64;abc.abc" required>
+                  <span *ngIf="registrationForm.get('email').hasError('required') && registrationForm.get('email').touched" style="color: red;">
+                    Email is required
+                  </span>
+                  <span *ngIf="registrationForm.get('email').hasError('email') && registrationForm.get('email').touched" style="color: red;">
+                    Invalid email format should be abc&#64;abc.abc
+                  </span>
+          
+                </td>
+                <td>
+                  <label for="addresstype">Address:</label>
+                  <select id="addresstype" formControlName="addresstype" class="form-control" >
+                    <option value="home">Home</option>
+                    <option value="company">Company</option>
+                  </select>
+                </td>
+              </tr>
+              <tr *ngIf="registrationForm.get('addresstype')?.value === 'home'">
+                <td colspan="2">
+                  <label for="homeaddress1">Home Address Line 1:</label>
+                  <input type="text" id="homeaddress1" formControlName="homeaddress1" class="form-control" placeholder="Line One">
+                </td>
+              </tr>
+              <tr *ngIf="registrationForm.get('addresstype')?.value === 'home'">
+                <td colspan="2">
+                  <label for="homeaddress2">Home Address Line 2:</label>
+                  <input type="text" id="homeaddress2" formControlName="homeaddress2" class="form-control" placeholder="Line Two">
+                </td>
+              </tr>
+              <tr *ngIf="registrationForm.get('addresstype')?.value === 'company'">
+                <td colspan="2">
+                  <label for="companyaddress1">Company Address Line 1:</label>
+                  <input type="text" id="companyaddress1" formControlName="companyaddress1" class="form-control" placeholder="Line One">
+                </td>
+              </tr>
+              <tr *ngIf="registrationForm.get('addresstype')?.value === 'company'">
+                <td colspan="2">
+                  <label for="companyaddress2">Company Address Line 2:</label>
+                  <input type="text" id="companyaddress2" formControlName="companyaddress2" class="form-control" placeholder="Line Two">
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Gender:</label>
+                  <div>
+                    <input type="radio" id="male" value="Male" formControlName="gender"> Male
+                    <input type="radio" id="female" value="Female" formControlName="gender"> Female
+                  </div>
+                </td>
+                <td>
+                  <label for="age">Age: {{ registrationForm.get('age')?.value }}</label>
+                  <input type="range" id="age" min="0" max="100" formControlName="age" class="form-control" >
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="interests">Interests:</label>
+                  <tag-input formControlName="interests"></tag-input>
+                </td>
+                <td>
+                  <label for="profilePhoto">Profile Photo:</label>
+                  <input type="file" (change)="onFileChange($event)" class="form-control">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-center">
+                  <label>Photo:</label>
+                  <img [src]="users.profilePhoto" alt="Profile Photo" style="max-width: 200px; max-height: 200px;">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="text-center">
+                  <button class="btn btn-success" type="submit" [disabled]="!registrationForm.valid">Register</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
