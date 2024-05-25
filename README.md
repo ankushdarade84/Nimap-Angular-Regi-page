@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 # steps for Run the Project 
 1. Install AngularCLI - `npm install -g @angular/cli`
 3. Install node Module - `npm install`
-4. Install JSON Server - `npm install json-server`
+4. Install JSON Server - `npm install -g json-server`
 5. Run the JSON Server - `json-server --watch db.json`
 6. Run the Angular Project `ng serve`
 
