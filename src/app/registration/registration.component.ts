@@ -1,6 +1,12 @@
-
 import { Component, NgModule, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormArray} from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+  FormArray,
+} from '@angular/forms';
 import { DataService } from '../data.service';
 
 import { CommonModule } from '@angular/common';
@@ -14,14 +20,11 @@ import { TagInputModule } from 'ngx-chips';
   standalone: true,
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
-  imports:[FormsModule, CommonModule,ReactiveFormsModule,TagInputModule],
-  providers: [DataService]
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, TagInputModule],
+  providers: [DataService],
 })
 export class RegistrationComponent implements OnInit {
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   openPopup(): void {
     const modal = document.getElementById('registrationModal');
@@ -37,16 +40,36 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  users: Users = new Users(
+    '',
+    '',
+    '',
+    'home',
+    '',
+    '',
+    '',
+    '',
+    'Male',
+    18,
+    '',
+    '',
+  );
 
-  
-  users: Users = new Users("", "", "", "home", "", "", "", "", "Male", 18, "", "");
-
-  registrationForm: FormGroup|any;
+  registrationForm: FormGroup | any;
   file: any;
-  user:any;
-  constructor(private fb: FormBuilder, private dataService: DataService,private router: Router) {
+  user: any;
+  userId: any;
+
+  constructor(
+    private fb: FormBuilder,
+    private dataService: DataService,
+    private router: Router,
+  ) {
     this.registrationForm = this.fb.group({
-      firstname: ['', Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)],
+      firstname: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)],
+      ],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       addresstype: ['home'],
@@ -56,12 +79,10 @@ export class RegistrationComponent implements OnInit {
       companyaddress2: [''],
       gender: ['Male'],
       age: [18],
-      interests: [[], Validators.required],
-      profilePhoto: [null]
+      interests: [[]],
+      profilePhoto: [null],
     });
   }
-
- 
 
   populateForm(user: any): void {
     this.registrationForm.patchValue({
@@ -75,10 +96,13 @@ export class RegistrationComponent implements OnInit {
       companyaddress2: user.companyaddress2,
       gender: user.gender,
       age: user.age,
-      profilePhoto: user.profilePhoto
+      profilePhoto: user.profilePhoto,
     });
 
-    this.registrationForm.setControl('interests', this.fb.array(user.interests || []));
+    this.registrationForm.setControl(
+      'interests',
+      this.fb.array(user.interests || []),
+    );
   }
 
   onFileChange(event: any): void {
@@ -124,8 +148,10 @@ export class RegistrationComponent implements OnInit {
       this.users.addresstype = this.registrationForm.get('addresstype').value;
       this.users.homeaddress1 = this.registrationForm.get('homeaddress1').value;
       this.users.homeaddress2 = this.registrationForm.get('homeaddress2').value;
-      this.users.companyaddress1 = this.registrationForm.get('companyaddress1').value;
-      this.users.companyaddress2 = this.registrationForm.get('companyaddress2').value;
+      this.users.companyaddress1 =
+        this.registrationForm.get('companyaddress1').value;
+      this.users.companyaddress2 =
+        this.registrationForm.get('companyaddress2').value;
       this.users.gender = this.registrationForm.get('gender').value;
       this.users.age = this.registrationForm.get('age').value;
       this.users.interests = this.registrationForm.get('interests').value;
@@ -133,22 +159,29 @@ export class RegistrationComponent implements OnInit {
       this.dataService.saveRegistration(this.users).subscribe({
         next: (response) => {
           console.log(response);
-          alert("Submitted");
-          this.router.navigate(['/user-interface'], { state: { user: this.users } });
-        
-          console.log(this.users);
-          this.closePopup();
-         
-          // this.router.navigate(['/user-interface'], { state: { user: this.users } });
+          this.dataService.setUserId(response.id);
+          this.userId = response.id;
+          alert('Submitted');
+          console.log(this.userId);
+          this.dataService.setUserId(this.userId);
+          console.log(this.dataService.getUserId());
+          console.log('Set userId:', this.userId);
+          this.dataService.emitUserId(this.userId);
+          console.log(this.dataService.userIdEmitter.subscribe());
+          // this.closePopup();
+
+          this.router.navigate(['/user-interface'], {
+            state: { id: this.dataService.getUserId() },
+          });
+          // this.router.navigate(['/user-interface', { id: this.userId }]);
         },
         error: (error) => {
           console.error('There was an error!', error);
           alert(`Error: ${error}`);
         },
         complete: () => {
-          console.log("Request complete");
-          console.log("User Interface login");
-        }
+          console.log('Request complete');
+        },
       });
     }
   }
