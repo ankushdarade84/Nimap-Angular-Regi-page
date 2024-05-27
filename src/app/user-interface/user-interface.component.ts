@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormArray, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+  FormArray,
+  FormControl,
+} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppRoutingModule } from '../app.routes';
 import { DataService } from '../data.service';
@@ -11,12 +19,18 @@ import { NgSelectModule } from '@ng-select/ng-select';
 @Component({
   selector: 'app-user-interface',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, AppRoutingModule, TagInputModule, NgSelectModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    TagInputModule,
+    NgSelectModule,
+  ],
   templateUrl: './user-interface.component.html',
   styleUrl: './user-interface.component.css',
-  providers: [DataService]
+  providers: [DataService],
 })
-
 export class UserInterfaceComponent implements OnInit {
   user: any;
   registrationForm: FormGroup | any;
@@ -24,21 +38,23 @@ export class UserInterfaceComponent implements OnInit {
 
   selectedFile: String | null = null;
 
-
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private router: Router,
-    private dataService: DataService,) {
-
+    private dataService: DataService,
+  ) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state && 'id' in navigation.extras.state) {
       this.userId = navigation.extras.state['id'];
     } else {
-      this.userId = "";
+      this.userId = '';
     }
 
-
     this.registrationForm = this.fb.group({
-      firstname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)]],
+      firstname: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-Z]{1,20}$/)],
+      ],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       addresstype: ['home'],
@@ -49,14 +65,9 @@ export class UserInterfaceComponent implements OnInit {
       gender: ['Male'],
       age: [18],
       interests: [[]],
-      profilePhoto: [null]
+      profilePhoto: [null],
     });
-
-
   }
-
-
-
 
   populateForm(user: any): void {
     this.registrationForm = this.fb.group({
@@ -71,32 +82,24 @@ export class UserInterfaceComponent implements OnInit {
       gender: user.gender,
       age: user.age,
       profilePhoto: user.profilePhoto,
-      interests: [user.interests]
+      interests: [user.interests],
 
       // interests:user.interests
-
     });
 
-
     console.log(user.interests);
-
-
   }
 
   ngOnInit(): void {
-
     this.dataService.getUserId();
     if (this.userId) {
-      console.log('Received userId:', this.userId);  // Debug log
+      console.log('Received userId:', this.userId); // Debug log
       this.userId = this.userId;
       this.getUserDetails(this.userId);
       console.log(this.getUserDetails(this.userId));
     } else {
       console.error('No userId found');
-
-
-    };
-
+    }
   }
 
   getUserDetails(userId: string): void {
@@ -107,24 +110,36 @@ export class UserInterfaceComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error fetching user details', err);
-      }
+      },
     });
   }
 
-
   editProfile(): void {
     if (this.user) {
-      this.populateForm(this.user); 
-      this.openPopup(); 
+      this.populateForm(this.user);
+      this.openPopup();
     }
   }
 
+  deleteUser(): void {
+    this.dataService.deleteUser(this.userId).subscribe(
+      (response) => {
+        this.user = null;
+        console.log('User deleted successfully', response);
+        alert('User Deleted sucessfully..');
+        this.ngOnInit();
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        console.error('Error deleting user', error);
+      },
+    );
+  }
 
   logout(): void {
     this.user = null;
     this.router.navigate(['/']);
   }
-
 
   openPopup(): void {
     const modal = document.getElementById('registrationModal');
@@ -140,38 +155,28 @@ export class UserInterfaceComponent implements OnInit {
     }
   }
 
-
   get interests(): FormArray {
     return this.registrationForm.get('interests') as FormArray;
-
   }
-
-
-
 
   onSubmit(): void {
     if (this.registrationForm.valid) {
-
-      const userId = this.userId; 
+      const userId = this.userId;
       const updatedUserData = this.registrationForm.value;
       this.dataService.updateUser(userId, updatedUserData).subscribe(
-        response => {
+        (response) => {
           console.log('User updated successfully', response);
-          alert("Profile Updated")
+          alert('Profile Updated');
           this.closePopup();
           this.getUserDetails(this.userId);
-          this.ngOnInit()
-
+          this.ngOnInit();
         },
-        error => {
+        (error) => {
           console.error('Error updating user', error);
-        }
+        },
       );
-
     }
   }
-
-
 
   onFileChange(event: any): void {
     if (event.target.files.length > 0) {
@@ -179,7 +184,9 @@ export class UserInterfaceComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.registrationForm.patchValue({ profilePhoto: reader.result as string });
+        this.registrationForm.patchValue({
+          profilePhoto: reader.result as string,
+        });
       };
       reader.onerror = (error) => {
         console.error('File reading error:', error);
@@ -187,14 +194,13 @@ export class UserInterfaceComponent implements OnInit {
     }
   }
 
-
   onlyFileChange(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-      this.selectedFile=reader.result as string;
+        this.selectedFile = reader.result as string;
       };
       reader.onerror = (error) => {
         console.error('File reading error:', error);
@@ -204,42 +210,37 @@ export class UserInterfaceComponent implements OnInit {
 
   editPhoto(): void {
     if (this.registrationForm.valid) {
-
-      const userId = this.userId; 
+      const userId = this.userId;
       const updatedUserData = this.registrationForm.value;
       this.dataService.updateUser(userId, updatedUserData).subscribe(
-        response => {
+        (response) => {
           console.log('User updated successfully', response);
-          alert("Profile Updated")
+          alert('Profile Updated');
           this.closePopup();
           this.getUserDetails(this.userId);
-          this.ngOnInit()
-
+          this.ngOnInit();
         },
-        error => {
+        (error) => {
           console.error('Error updating user', error);
-        }
+        },
       );
-
     }
-
   }
-    //   this.dataService.updateProfilePhoto(this.userId, this.selectedFile).subscribe({
-    //     next: (response) => {
-    //       console.log('Profile photo updated successfully', response);
-    //       alert('Profile Photo Updated');
-    //       this.closePopup();
-    //       this.ngOnInit();
-    //     },
-    //     error: (error) => {
-    //       console.error('Error updating profile photo', error);
-    //     }
-    //   });
-    // } else {
-    //   alert('Please select a photo to upload.');
-    // }
-    // }
-
+  //   this.dataService.updateProfilePhoto(this.userId, this.selectedFile).subscribe({
+  //     next: (response) => {
+  //       console.log('Profile photo updated successfully', response);
+  //       alert('Profile Photo Updated');
+  //       this.closePopup();
+  //       this.ngOnInit();
+  //     },
+  //     error: (error) => {
+  //       console.error('Error updating profile photo', error);
+  //     }
+  //   });
+  // } else {
+  //   alert('Please select a photo to upload.');
+  // }
+  // }
 
   openEditPhotoModal(): void {
     const modal = document.getElementById('editPhotoModal');
@@ -254,6 +255,4 @@ export class UserInterfaceComponent implements OnInit {
       modal.style.display = 'none';
     }
   }
-
-
 }

@@ -39,6 +39,10 @@ export class DataService {
     );
   }
 
+  deleteUser(userId: string): Observable<any> {
+    return this.httpClient.delete(`${this.apiUrl}/${userId}`);
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {

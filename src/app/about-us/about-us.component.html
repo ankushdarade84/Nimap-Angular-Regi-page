@@ -1,18 +1,19 @@
 <div class="header">
   <li><h2 style="color: blue;">User List</h2></li>
- <li><input class="button btn-info" value="Show Users List" (click)="show()" style="text-align: center" /></li>
+ <li><button class="button btn-info" value="Show Users List" (click)="show()" style="text-align: center" >Show All User</button></li>
  
  </div>
 
 
 
- <ul *ngFor='let user of contactlist '>
+ <ul *ngFor='let user of contactlist; let i=index '>
   <li>
     <div>
       <div class="row">
         <div class="column">
           <div class="profilepic">
             <img [src]="user.profilePhoto" alt="Profile Photo" style="max-width: 250px; max-height: 300px;">
+            <button class="btn btn-danger" (click)="deleteUser(user.id, i)">Delete This User</button>
           </div>
 
          

@@ -1,7 +1,8 @@
 <div class="container mt-5">
   <h2>User Profile</h2>
-  <li><button class="btn btn-primary" (click)="editProfile()">Edit Profile</button></li>
-  <li><button class="btn btn-danger" (click)="logout()">Logout</button></li>
+  <li><button class="btn btn-info" (click)="editProfile()">Edit Profile</button></li>
+  <li><button class="btn btn-secondary" (click)="logout()">Logout</button></li>
+  <li>   <button class="btn btn-danger" (click)="deleteUser()">Delete Profile</button></li>
   <!-- <li><button class="btn btn-info" (click)="openEditPhotoModal()">Edit Photo</button></li> -->
 
   <div *ngIf="user">
