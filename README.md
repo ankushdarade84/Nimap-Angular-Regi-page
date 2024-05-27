@@ -18,10 +18,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 6. Run the Angular Project `ng serve`
 
 <br>
+The Frontend(Angualr) Ruuning in port: 4200
+<br>
+The Server Running on Port : 3000
+<br>
+
+<br>
 The Task details are Present in `AngularTask.pdf`
 
 <br>
 # output
+<br>
+
+
+<br>
 
 ![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/9241ec75-53df-4e37-adba-121893debe85)
 
