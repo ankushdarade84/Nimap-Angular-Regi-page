@@ -1,7 +1,8 @@
 # AngularRegipage
 
 # Ankush Darade
-Check my website for more details - https://ankush-darade.netlify.app/
+Check my website for more details - https://ankush-darade.netlify.app/<br>
+                                  - https://github.com/ankushdarade84/
 <br>
 
 
@@ -29,6 +30,11 @@ The Task details are Present in `AngularTask.pdf`
 <br>
 # output
 <br>
+<br>
+for output check here - https://codesandbox.io/p/github/ankushdarade84/Nimap-Angular-Regi-page/main/
+<br>
+<br>
+
 
 
 <br>
