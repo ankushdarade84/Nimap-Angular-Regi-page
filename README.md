@@ -25,7 +25,7 @@ The Server Running on Port : 3000
 <br>
 
 <br>
-The Task details are Present in <a href="https://github.com/ankushdarade84/Nimap-Angular-Regi-page/AngularTask.pdf"> AngularTask.pdf</a>
+The Task details are Present in <a href="AngularTask.pdf" target="_blank"> AngularTask.pdf</a>
 
 <br>
 
