@@ -1,4 +1,4 @@
-# AngularRegipage
+# Angular Registration Form
 
 # Ankush Darade
 Check my website for more details - https://ankush-darade.netlify.app/<br>
@@ -7,7 +7,7 @@ Check my website for more details - https://ankush-darade.netlify.app/<br>
 
 
 
-## Development server
+# Development server
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
 
@@ -29,17 +29,11 @@ The Task details are Present in `AngularTask.pdf`
 
 <br>
 # output
-<br>
-<br>
 check here code and Output - https://codesandbox.io/p/github/ankushdarade84/Nimap-Angular-Regi-page/main
 <br>
 Check here for Live Server - https://angular-regi-page.vercel.app/
 <br>
-<br>
 
-
-
-<br>
 
 ![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/9241ec75-53df-4e37-adba-121893debe85)
 
