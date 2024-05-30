@@ -8,7 +8,7 @@ Check my website for more details - https://ankush-darade.netlify.app/<br>
 
 
 # Development server
-
+<br>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
 
 # Steps for Run the Project 
@@ -25,16 +25,18 @@ The Server Running on Port : 3000
 <br>
 
 <br>
-The Task details are Present in `AngularTask.pdf`
+The Task details are Present in <a href="https://github.com/ankushdarade84/Nimap-Angular-Regi-page/AngularTask.pdf"> AngularTask.pdf</a>
 
 <br>
+
 # Output
+
 
 check here code and Output - https://codesandbox.io/p/github/ankushdarade84/Nimap-Angular-Regi-page/main
 <br>
 Check here for Live Server - https://angular-regi-page.vercel.app/
 <br>
-
+<br>
 
 ![image](https://github.com/ankushdarade84/Nimap-Angular-Regi-page/assets/82811718/9241ec75-53df-4e37-adba-121893debe85)
 
