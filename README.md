@@ -31,7 +31,9 @@ The Task details are Present in `AngularTask.pdf`
 # output
 <br>
 <br>
-for output check here - https://codesandbox.io/p/github/ankushdarade84/Nimap-Angular-Regi-page/main
+check here code and Output - https://codesandbox.io/p/github/ankushdarade84/Nimap-Angular-Regi-page/main
+<br>
+Check here for Live Server - https://angular-regi-page.vercel.app/
 <br>
 <br>
 
