@@ -8,8 +8,8 @@ import { Users } from './models/Users';
   providedIn: 'root',
 })
 export class DataService {
-  // private apiUrl = 'https://yj9wsw-3000.csb.app/users'; // JSON Server URL
-  private apiUrl = 'http://localhost:3000/users'; // JSON Server URL
+  private apiUrl = 'https://yj9wsw-3000.csb.app/users'; // JSON Server URL
+  // private apiUrl = 'https://localhost:3000/users'; // JSON Server URL
   // private apiUrl = '/users';
   constructor(private httpClient: HttpClient) {}
 
